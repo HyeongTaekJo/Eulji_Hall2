@@ -1,0 +1,325 @@
+* {
+  box-sizing: border-box;
+}
+
+.grid-container {
+  width: 95%;
+  margin: 20px auto;
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid-header, .grid-row {
+  display: flex;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.grid-header {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+}
+
+.grid-cell {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  flex: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+  /* 세로 중앙 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 글씨 굵게 설정 */
+  font-weight: bold;
+}
+
+.grid-row {
+  cursor: pointer;
+}
+
+.grid-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.grid-row:hover {
+  background-color: #e0e0e0;
+}
+
+.grid-footer {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+}
+
+.page-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.page-button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    max-width: 95%;
+  }
+
+  .grid-header, .grid-row {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .page-button {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
+
+/* 예약 상태 콤보박스 디자인 */
+.status-select {
+  width: 100px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  font-weight: bold; /* 콤보박스 글씨 굵게 */
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.status-select option {
+  padding: 8px;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+  font-weight: bold; /* 입력 값 굵게 표시 */
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* 특정 컬럼에 맞게 너비 조정 */
+.grid-cell:nth-child(1), /* '소속' */
+.grid-cell:nth-child(2), /* '계급' */
+.grid-cell:nth-child(3), /* '성명' */
+.grid-cell:nth-child(5), /* '날짜' */
+.grid-cell:nth-child(8), /* '메뉴' */
+.grid-cell:nth-child(10) { /* '예약 상태' */
+  width: 150px; /* 소속, 계급, 성명, 메뉴, 예약 상태에 충분한 공간 할당 */
+}
+
+.grid-cell:nth-child(4) { /* '인원 수' */
+  width: 120px; /* 인원 수 컬럼 크기 조정 */
+}
+
+
+.grid-cell:nth-child(6) { /* '예약시간' */
+  width: 190px; /* 예약시간 컬럼 크기 조정 */
+}
+
+.grid-cell:nth-child(7) { /* '연락처' */
+  width: 150px; /* 연락처 컬럼 크기 조정 */
+}
+
+.grid-cell:nth-child(9) { /* '룸/홀 선택' */
+  width: 100px; /* 룸/홀 선택을 적당히 줄이기 */
+}
+
+.grid-cell:nth-child(11) { /* '저장' 버튼 */
+  width: 80px; /* 저장 버튼 너비 줄이기 */
+}
+
+/* 입력 필드 스타일 */
+.grid-cell input {
+  text-align: center;
+}
+
+/* '메뉴' 컬럼 너비 확대 */
+.grid-cell:nth-child(8) {
+  flex: 1; /* '메뉴' 컬럼을 더 넓게 설정 */
+}
+
+/* '룸/홀' 컬럼 너비 확대 */
+.grid-cell:nth-child(9) {
+  flex: 0.4; /* '메뉴' 컬럼을 더 넓게 설정 */
+}
+/* '저장' 컬럼 너비 확대 */
+.grid-cell:nth-child(11) {
+  flex: 0.4; /* '메뉴' 컬럼을 더 넓게 설정 */
+}
+/* '예약시간 컬럼 너비 확대 */
+.grid-cell:nth-child(6) {
+  flex: 1.1; /* '메뉴' 컬럼을 더 넓게 설정 */
+}
+
+.save-button {
+  background-color: #28a745; /* 저장 버튼에 그린 색상 적용 */
+  color: white;
+  border: none;
+  padding: 6px 12px; /* 크기 조정 */
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.save-button:hover {
+  background-color: #218838; /* 마우스 오버 시 색상 변경 */
+  transform: scale(1.05); /* 살짝 확대되는 효과 */
+}
+
+.save-button:disabled {
+  background-color: #6c757d; /* 비활성화 상태 색상 */
+  cursor: not-allowed;
+}
+
+.save-button:disabled:hover {
+  background-color: #6c757d; /* 비활성화 상태에서 hover 방지 */
+}
+
+.menu-checkboxes {
+  display: flex;
+  flex-direction: column;  /* 세로 정렬 */
+  /* gap: 1px; 항목 간의 간격을 추가할 수 있습니다 */
+}
+
+.menu-checkboxes label {
+  display: flex;
+  align-items: center; /* 체크박스와 텍스트 정렬 */
+}
+
+.grid-footer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+button:active:not(:disabled) {
+  background-color: #004085;
+}
+
+.date-filter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.date-filter label {
+  font-weight: bold;
+  
+}
+
+.date-filter input[type="date"],
+.date-filter select {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.date-filter input[type="date"]:focus,
+.date-filter select:focus {
+  border-color: #007bff;
+}
+
+.date-filter select {
+  /* Center text and expand to match date input size */
+  text-align: center;
+  width: 120px; /* Adjust width as needed */
+  background-color: #fff;
+  color: #333;
+  margin-left: 10px; /* label과 input 사이에 여백 추가 */
+}
+
+.date-filter select:focus {
+  background-color: #e0f0ff;
+}
+
+/* 날짜 선택기 스타일 */
+.custom-date-picker {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 130px;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  height: 37px;
+}
+
+.custom-date-picker:focus {
+  border-color: #007bff;
+  background-color: #e9f7ff; /* 포커스 시 배경색 변경 */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 포커스 시 그림자 추가 */
+}
+
+.custom-date-picker::-webkit-calendar-picker-indicator {
+  opacity: 0.8;
+  cursor: pointer; /* 캘린더 아이콘 커서 */
+}
