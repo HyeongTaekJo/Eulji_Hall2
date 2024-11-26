@@ -1,5 +1,2 @@
 # Node.js 관련
 node_modules/
-
-# 환경 변수 파일
-.env
