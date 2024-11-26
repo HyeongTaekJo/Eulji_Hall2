@@ -17,7 +17,7 @@ let auth = async (req, res, next) => {
     if(token === null) return res.sendStatus(401);
     try{
         //토큰이 유효한지 확인
-        const decode = jwt.verify(token, process.env.JWT_SECRET);
+        const decode = jwt.verify(token, "supersecret");
         const user = await User.findOne({"_id": decode.userId});//몽고DB 아틀라스에 있는데이터는 고유 id 키값을 가지고 있는데 그것을 추출한 것
         if(!user){
             return res.status(400).send('없는 유저입니다.');

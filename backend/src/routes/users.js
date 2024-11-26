@@ -63,7 +63,7 @@ router.post('/login', async(req, res, next) => {
        }
 
        //토큰 생성(JWT) 백엔드에서만 알고 있는 JWT_SECRET을 포함하여 토큰 생성
-       const accessToken = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '1h'});
+       const accessToken = jwt.sign(payload, "supersecret", {expiresIn: '3h'});
 
        return res.json({user, accessToken})
     } 

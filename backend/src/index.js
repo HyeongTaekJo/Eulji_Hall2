@@ -22,7 +22,7 @@ app.use(cors(corsOptions
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect("mongodb+srv://diajd1:rpdla5627%40@cluster0.z3j50.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 .then(() => {
     console.log('MongoDB 연결완료...');
 })
