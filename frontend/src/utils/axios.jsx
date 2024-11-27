@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://158.180.77.205:5000',
+    baseURL: 'http://localhost:5000',  //<!-- localhost 부분을 IP로 바꿔줘야 함 -->
 })
 
 //로그인 인증 토큰 보내주기
