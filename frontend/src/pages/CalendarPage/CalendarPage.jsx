@@ -81,7 +81,7 @@ const DateBox = styled.div.withConfig({
   align-items: center;
   transition: background-color 0.3s;
 
-  font-size: 1rem; /* 날짜 숫자 크기 증가 */
+  font-size: 1rem; /* 기본 날짜 숫자 크기 */
   font-weight: bold; /* 숫자 강조 */
 
   &:hover {
@@ -93,6 +93,21 @@ const DateBox = styled.div.withConfig({
     font-size: 0.8rem;
     color: #007bff;
     text-align: center;
+  }
+
+  /* 작은 화면을 위한 스타일 */
+  @media (max-width: 768px) {
+    font-size: 0.9rem; /* 폰트 크기 축소 */
+    height: auto; /* 작은 화면에서는 고정 높이가 불편할 수 있으므로 높이를 자동으로 설정 */
+    padding: 8px; /* 패딩을 줄여 공간을 더 확보 */
+    
+    /* 내부 콘텐츠 정렬 수정 */
+    justify-content: center; /* 날짜가 화면 가운데에 배치되도록 수정 */
+    
+    & > div {
+      margin-top: 2px; /* 작은 화면에서는 간격을 더 줄일 수 있음 */
+      font-size: 0.5rem; /* 추가 정보의 폰트 크기 감소 */
+    }
   }
 `;
 
