@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://134.185.99.196:5000',
+    baseURL: 'http://140.245.65.135:5000',
 })
 
 //로그인 인증 토큰 보내주기
