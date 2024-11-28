@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
 
-    baseURL: '',
+    baseURL: 'http://140.245.65.135:5000',
 
 })
 
 //로그인 인증 토큰 보내주기
-axios.interceptors.request.use(function (config){ //requset라는 것은 백엔드로 보낼 때
+axiosInstance.interceptors.request.use(function (config){ //requset라는 것은 백엔드로 보낼 때
     config.headers.Authorization = 'Bearer ' + localStorage.getItem('accessToken');
     return config;
 }, function(error){
@@ -15,7 +15,7 @@ axios.interceptors.request.use(function (config){ //requset라는 것은 백엔�
 })
 
 //토큰 기간이 만료되었을 경우
-axios.interceptors.response.use(function (response){ //response라는 것은 백엔드에서 프론트로 올 때
+axiosInstance.interceptors.response.use(function (response){ //response라는 것은 백엔드에서 프론트로 올 때
    return response;
 }, function(error){
     if(error.response.data === 'jwt expired'){
