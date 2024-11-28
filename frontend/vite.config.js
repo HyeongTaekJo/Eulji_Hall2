@@ -18,7 +18,7 @@ export default defineConfig({
       //     rewrite: (path) => path, // '/api'를 제거
       //   },
       '/api': { // '/'가 아닌 '/'뒤에 반드시 문자열이 붙은 정규표현식
-        target: 'http://140.245.65.135:5000', // API 서버
+        target: 'http://localhost:5000', // API 서버
         changeOrigin: true, // 호스트 헤더 변경
         // rewrite: (path) =>  path.replace(/^\/api/, ''), // '/api'를 제거
         rewrite: (path) => path.replace(/^\/api/, ''), // '/api'를 제거
