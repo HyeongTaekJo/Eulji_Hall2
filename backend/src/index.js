@@ -14,7 +14,7 @@ const app = express();
 const corsOptions = {
     //origin: '*', //프론트엔드 3000요청 허용,
     origin: [
-             'http://140.245.65.135:5000',
+             'http://140.245.65.135:80',
             
             ], // 허용할 출처
     methods: ["GET", "POST", "PUT", "DELETE"],
