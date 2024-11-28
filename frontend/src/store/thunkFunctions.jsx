@@ -9,7 +9,7 @@ export const registerUser = createAsyncThunk(
     async (body,thunkAPI) => {
         try {
             const response = await axiosInstance.post(
-                `/users/register`,
+                `/api/users/register`,
                 body
             )
             return response.data;
@@ -22,7 +22,7 @@ export const registerUser = createAsyncThunk(
 
 // 비밀번호 찾기
 export const findPassword = createAsyncThunk(
-    'user/findPasswordUser',
+    '/api/user/findPasswordUser',
     async ({ searchId, searchName }, thunkAPI) => {
         try {
             const response = await axiosInstance.post('/users/findPassword', { 
@@ -79,7 +79,7 @@ export const authUser = createAsyncThunk(
 
 //로그인
 export const loginUser = createAsyncThunk(
-    "user/loginUser",
+    "/api/user/loginUser",
     async (body,thunkAPI) => {
         
         try {
