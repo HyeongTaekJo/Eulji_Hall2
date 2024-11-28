@@ -16,7 +16,7 @@ const corsOptions = {
     origin: ['http://localhost:5000','http://localhost:5173', 'http://140.245.65.135:5000', 'http://140.245.65.135:80'], // 허용할 출처
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"], // 허용할 헤더
-  };
+};
 
 app.use(cors(corsOptions
 ));
