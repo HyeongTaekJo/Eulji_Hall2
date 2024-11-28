@@ -710,7 +710,7 @@ const ReservationForm = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Label>소속:</Label>
-        <Input {...register('affiliation', { required: '소속을 입력해주세요' })} placeholder="Ex: 24연대" />
+        <Input {...register('affiliation', { required: '소속을 입력해주세요' })} placeholder="Ex: 52여단" />
         {errors.affiliation && <ErrorMessage>{errors.affiliation.message}</ErrorMessage>}
 
         <Label>계급:</Label>
