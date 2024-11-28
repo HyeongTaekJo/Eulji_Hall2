@@ -6,28 +6,6 @@ import DatePicker from 'react-datepicker';  // react-datepicker 임포트
 import "react-datepicker/dist/react-datepicker.css";  // 스타일 추가
 import { FaExclamationCircle } from 'react-icons/fa'; // React Icons 라이브러리
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    color: '#6c757d',
-    backgroundColor: '#f8f9fa',
-    border: '1px solid #dee2e6',
-    borderRadius: '8px',
-    padding: '20px',
-  },
-  icon: {
-    fontSize: '2rem',
-    marginBottom: '10px',
-  },
-  text: {
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
-  },
-};
 
 const getTodayInKST = () => {
   const kstOffset = 9 * 60 * 60 * 1000; // KST는 UTC+9
@@ -246,9 +224,9 @@ const ReservationListGridPage = () => {
   const renderRows = () => {
     if (!reservations || reservations.length === 0) {
       return (
-        <div style={styles.container}>
-          <FaExclamationCircle style={styles.icon} />
-          <p style={styles.text}>데이터가 없습니다</p>
+        <div className="container">
+          <FaExclamationCircle className="icon" />
+          <p className="text">데이터가 없습니다</p>
         </div>
       );
     }

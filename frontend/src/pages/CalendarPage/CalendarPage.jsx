@@ -116,11 +116,20 @@ const Calendar = () => {
   const { reservations = [],  } = useSelector((state) => state.reservation || {});
   const roomTypes = useSelector((state) => state.reservation.roomTypes || []);
   const hallTypes = useSelector((state) => state.reservation.hallTypes || []);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [roomMaxPeople, setRoomMaxPeople] = useState(0);
   const [data, setData] = useState({
     "2024-11-23": ["미팅", "할 일 1"],
     "2024-11-25": ["워크샵", "프로젝트 리뷰"],
   });
+
+  // 화면 크기 상태 업데이트
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -237,28 +246,36 @@ const Calendar = () => {
     });
   
     return result;
-};
+  };
 
-useEffect(() => {
-  const remainingRoomCapacity = calculateRemainingRoomCapacity(reservations, roomTypes);
+  useEffect(() => {
+    const remainingRoomCapacity = calculateRemainingRoomCapacity(reservations, roomTypes);
 
-  const newData = Object.keys(remainingRoomCapacity).reduce((acc, date) => {
-    const roomData = remainingRoomCapacity[date];
+    const newData = Object.keys(remainingRoomCapacity).reduce((acc, date) => {
+      const roomData = remainingRoomCapacity[date];
 
-    const bookedRoomsCount = roomData.totalBookedRooms;
-    const bookedHallTablesCount = roomData.totalBookedTables;
-    const bookedRoomPeople = roomData.totalBookedRoomPeople;
-    const bookedHallPeople = roomData.totalBookedHallPeople;
+      const bookedRoomsCount = roomData.totalBookedRooms;
+      const bookedHallTablesCount = roomData.totalBookedTables;
+      const bookedRoomPeople = roomData.totalBookedRoomPeople;
+      const bookedHallPeople = roomData.totalBookedHallPeople;
 
-    const roomInfo = `룸 : ${bookedRoomsCount}팀 (총 : ${bookedRoomPeople}명)`;
-    const hallInfo = `홀 : ${bookedHallTablesCount}팀 (총 : ${bookedHallPeople}명)`;
+      // 화면 크기에 따라 표시 형식 변경
+      const roomInfo =
+        windowWidth > 768
+          ? `룸 : ${bookedRoomsCount}팀 (총 : ${bookedRoomPeople}명)`
+          : `룸 : ${bookedRoomsCount}팀`;
 
-    acc[date] = [roomInfo, hallInfo];
-    return acc;
-  }, {});
+      const hallInfo =
+        windowWidth > 768
+          ? `홀 : ${bookedHallTablesCount}팀 (총 : ${bookedHallPeople}명)`
+          : `홀 : ${bookedHallTablesCount}팀`;
 
-  setData(newData);
-}, [reservations, roomTypes, hallTypes]);  // 예약 데이터나 룸 타입이 변경될 때마다 실행
+      acc[date] = [roomInfo, hallInfo];
+      return acc;
+    }, {});
+
+    setData(newData);
+  }, [reservations, roomTypes, hallTypes, windowWidth]); // 화면 크기 상태 추가
 
 
   const renderHeader = () => {

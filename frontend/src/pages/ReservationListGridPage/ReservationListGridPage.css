@@ -2,6 +2,29 @@
   box-sizing: border-box;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 .grid-container {
   width: 95%;
   margin: 20px auto;
@@ -9,6 +32,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 1;  /* 필요시 축소 가능하게 설정 */
 }
 
 .grid-header, .grid-row {
@@ -80,7 +104,8 @@
 
 @media (max-width: 768px) {
   .grid-container {
-    max-width: 95%;
+    width: 100%;
+    max-width: 100%;
   }
 
   .grid-header, .grid-row {
