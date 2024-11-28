@@ -24,14 +24,6 @@ app.use(cors(
     corsOptions
 ));
 
-// 요청 처리 미들웨어
-app.use((req, res, next) => {
-    const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; // 전체 URL
-    console.log('Request URL:', fullUrl); // 전체 URL 출력
-    next(); // 다음 미들웨어로 이동
-});
-app.use(express.json());
-
 mongoose.connect("mongodb+srv://diajd1:rpdla5627%40@cluster0.z3j50.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 .then(() => {
     
