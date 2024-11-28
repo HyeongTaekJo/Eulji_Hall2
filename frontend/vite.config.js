@@ -14,6 +14,7 @@ export default defineConfig({
      '/': {  // 모든 요청을 백엔드 서버로 프록시
         target: 'http://localhost:5000', // 백엔드 서버 주소
         changeOrigin: true,  // 호스트 헤더 변경
+        rewrite: (path) => path,  // 경로 수정 없이 그대로 전달
         //rewrite: (path) => path.replace(/^\/+/, ''),  // 요청 경로에서 앞의 '/' 제거
         //secure: false, // https 연결에서 인증서를 무시하도록 설정
       },
