@@ -19,7 +19,7 @@ const corsOptions = {
              'http://140.245.65.135:80',
              'http://127.0.0.1:5000',
              'http://localhost:80',
-             //'http://140.245.65.135'
+             'http://140.245.65.135'
             ], // 허용할 출처
     methods: ["GET", "POST", "PUT", "DELETE"],
     //allowedHeaders: ["Content-Type", "Authorization"], // 허용할 헤더
