@@ -5,7 +5,7 @@ import axiosInstance from '../utils/axios';
 
 //회원가입
 export const registerUser = createAsyncThunk(
-    "api/user/registerUser",
+    "user/registerUser",
     async (body,thunkAPI) => {
         try {
             const response = await axiosInstance.post(
@@ -22,10 +22,10 @@ export const registerUser = createAsyncThunk(
 
 // 비밀번호 찾기
 export const findPassword = createAsyncThunk(
-    'api/user/findPasswordUser',
+    'user/findPasswordUser',
     async ({ searchId, searchName }, thunkAPI) => {
         try {
-            const response = await axiosInstance.post('/users/findPassword', { 
+            const response = await axiosInstance.post('/api/users/findPassword', { 
                 searchId,
                 searchName, 
             });  
@@ -42,10 +42,10 @@ export const findPassword = createAsyncThunk(
 
 // 비밀번호 변경
 export const changePassword = createAsyncThunk(
-    'api/user/changePasswordUser',
+    'user/changePasswordUser',
     async ({ password,id }, thunkAPI) => {
         try {
-            const response = await axiosInstance.post('/users/changePassword', { 
+            const response = await axiosInstance.post('/api/users/changePassword', { 
                 password,
                 id
             });  
@@ -63,11 +63,11 @@ export const changePassword = createAsyncThunk(
 //페이지를 움길때 마다 작동(App.jsx에서 호출)
 //권한조회
 export const authUser = createAsyncThunk( 
-    "api/user/authUser",
+    "user/authUser",
     async (body, thunkAPI) => {
         try {
             const response = await axiosInstance.get(
-                `/users/auth`,
+                `/api/users/auth`,
             )
             return response.data; //action.payload
         } catch (err) {
@@ -79,12 +79,12 @@ export const authUser = createAsyncThunk(
 
 //로그인
 export const loginUser = createAsyncThunk(
-    "api/user/loginUser",
+    "user/loginUser",
     async (body,thunkAPI) => {
         
         try {
             const response = await axiosInstance.post(
-                `/users/login`,
+                `/api/users/login`,
                 body //email, password가 있음
             )
             return response.data; //action.payload
@@ -97,11 +97,11 @@ export const loginUser = createAsyncThunk(
 
 //로그아웃
 export const logoutUser = createAsyncThunk(
-    "api/user/logoutUser",
+    "user/logoutUser",
     async (body, thunkAPI) => {
         try {
             const response = await axiosInstance.post(
-                `/users/logout`,
+                `/api/users/logout`,
             )
             return response.data; //action.payload
         } catch (err) {
