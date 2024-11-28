@@ -11,7 +11,7 @@ export default defineConfig({
     // }
 
     proxy: {
-     '/api': {  // 모든 요청을 백엔드 서버로 프록시
+     '/': {  // 모든 요청을 백엔드 서버로 프록시
         target: 'http://localhost:5000', // 백엔드 서버 주소
         changeOrigin: true,  // 호스트 헤더 변경
         rewrite: (path) => path,  // 경로 수정 없이 그대로 전달
