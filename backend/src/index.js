@@ -21,10 +21,17 @@ const corsOptions = {
 app.use(cors(corsOptions
 ));
 
+// 요청 처리 미들웨어
+app.use((req, res, next) => {
+    console.log('Request URL:', req.originalUrl); // 요청 URL 출력
+    next(); // 다음 미들웨어로 이동
+  });
+
 app.use(express.json());
 
 mongoose.connect("mongodb+srv://diajd1:rpdla5627%40@cluster0.z3j50.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 .then(() => {
+    
     console.log('MongoDB 연결완료...');
 })
 .catch(err => {

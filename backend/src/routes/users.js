@@ -45,6 +45,7 @@ router.get('/auth', auth, async(req, res) => { //auth 미들웨어를 통과한�
 
 // 로그인
 router.post('/login', async(req, res, next) => {
+   
     try{
         //존재하는 유저인지 체크
        const user = await User.findOne({email: req.body.email});
