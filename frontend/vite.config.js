@@ -12,7 +12,7 @@ export default defineConfig({
 
     proxy: {
      '/': {  // 모든 요청을 백엔드 서버로 프록시
-        target: 'http://localhost:5000', // 백엔드 서버 주소
+        target: 'http://localhost:6000', // 백엔드 서버 주소
         changeOrigin: true,  // 호스트 헤더 변경
         rewrite: (path) => path,  // 경로 수정 없이 그대로 전달
         //rewrite: (path) => path.replace(/^\/+/, ''),  // 요청 경로에서 앞의 '/' 제거

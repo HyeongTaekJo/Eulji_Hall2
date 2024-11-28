@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const mongoose = require('mongoose');
 
-const port = 5000;
+const port = 6000;
 const app = express();
 
 // CORS 처리
