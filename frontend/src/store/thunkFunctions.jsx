@@ -9,7 +9,7 @@ export const registerUser = createAsyncThunk(
     async (body,thunkAPI) => {
         try {
             const response = await axiosInstance.post(
-                `/api/users/register`,
+                `/users/register`,
                 body
             )
             return response.data;
@@ -25,7 +25,7 @@ export const findPassword = createAsyncThunk(
     'user/findPasswordUser',
     async ({ searchId, searchName }, thunkAPI) => {
         try {
-            const response = await axiosInstance.post('/api/users/findPassword', { 
+            const response = await axiosInstance.post('/users/findPassword', { 
                 searchId,
                 searchName, 
             });  
@@ -45,7 +45,7 @@ export const changePassword = createAsyncThunk(
     'user/changePasswordUser',
     async ({ password,id }, thunkAPI) => {
         try {
-            const response = await axiosInstance.post('/api/users/changePassword', { 
+            const response = await axiosInstance.post('/users/changePassword', { 
                 password,
                 id
             });  
@@ -67,7 +67,7 @@ export const authUser = createAsyncThunk(
     async (body, thunkAPI) => {
         try {
             const response = await axiosInstance.get(
-                `/api/users/auth`,
+                `/users/auth`,
             )
             return response.data; //action.payload
         } catch (err) {
@@ -101,7 +101,7 @@ export const logoutUser = createAsyncThunk(
     async (body, thunkAPI) => {
         try {
             const response = await axiosInstance.post(
-                `/api/users/logout`,
+                `/users/logout`,
             )
             return response.data; //action.payload
         } catch (err) {

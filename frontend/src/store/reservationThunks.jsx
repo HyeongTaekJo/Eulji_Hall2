@@ -6,10 +6,10 @@ import axiosInstance from '../utils/axios';
 
 // 예약 생성
 export const createReservation = createAsyncThunk(
-    'api/reservation/createReservation',
+    'reservation/createReservation',
     async (body, thunkAPI) => {
         try {
-            const response = await axiosInstance.post('/api/reservations/create', body);
+            const response = await axiosInstance.post('/reservations/create', body);
             return response.data; // action.payload
         } catch (err) {
             console.log(err);
@@ -20,11 +20,11 @@ export const createReservation = createAsyncThunk(
 
 // 예약 목록 조회
 export const fetchReservations = createAsyncThunk(
-    'api/reservation/fetchReservations',
+    'reservation/fetchReservations',
     async ({ startDate, endDate, statusFilter }, thunkAPI) => {
         //console.log(`startDate`, startDate)
         try {
-            const response = await axiosInstance.get('/api/reservations', {
+            const response = await axiosInstance.get('/reservations', {
                 params: { startDate, endDate, statusFilter } // 필터링 파라미터 전달
             });
             return response.data; // 필터링된 예약 목록을 반환
@@ -38,10 +38,10 @@ export const fetchReservations = createAsyncThunk(
 
 // 예약 수정
 export const updateReservation = createAsyncThunk(
-    'api/reservation/updateReservation',
+    'reservation/updateReservation',
     async ({ id, body }, thunkAPI) => {
         try {
-            const response = await axiosInstance.put(`/api/reservations/${id}`, body);
+            const response = await axiosInstance.put(`/reservations/${id}`, body);
             return response.data; // action.payload
         } catch (err) {
             console.log(err);
@@ -52,10 +52,10 @@ export const updateReservation = createAsyncThunk(
 
 // 예약 삭제
 export const deleteReservation = createAsyncThunk(
-    'api/reservation/deleteReservation',
+    'reservation/deleteReservation',
     async (id, thunkAPI) => {
         try {
-            const response = await axiosInstance.delete(`/api/reservations/${id}`);
+            const response = await axiosInstance.delete(`/reservations/${id}`);
             return response.data; // action.payload
         } catch (err) {
             console.log(err);
@@ -66,10 +66,10 @@ export const deleteReservation = createAsyncThunk(
 
 // 이름, 연락처, 상태로 예약 리스트를 가져오는 액션
 export const fetchReservationList = createAsyncThunk(
-    'api/reservation/fetchReservationList',
+    'reservation/fetchReservationList',
     async ({ searchName, searchContact, status }, thunkAPI) => {
         try {
-            const response = await axiosInstance.post('/api/reservations/search', { 
+            const response = await axiosInstance.post('/reservations/search', { 
                 searchName, 
                 searchContact, 
                 status // 추가: 상태 필터 전달
@@ -87,11 +87,11 @@ export const fetchReservationList = createAsyncThunk(
 
 // 룸 종류 조회
 export const fetchRoomTypes = createAsyncThunk(
-    'api/reservation/fetchRoomTypes',
+    'reservation/fetchRoomTypes',
     async (_, thunkAPI) => {
       try {
         // GET 요청을 보냄
-        const response = await axiosInstance.post('/api/reservations/fetchRoomTypes', { 
+        const response = await axiosInstance.post('/reservations/fetchRoomTypes', { 
            
         });  
         //console.log(JSON.stringify(response, null, 2)); 
@@ -106,11 +106,11 @@ export const fetchRoomTypes = createAsyncThunk(
 
   // 홀 종류 조회
 export const fetchHallTypes = createAsyncThunk(
-    'api/reservation/fetchHallTypes',
+    'reservation/fetchHallTypes',
     async (_, thunkAPI) => {
       try {
         // GET 요청을 보냄
-        const response = await axiosInstance.post('/api/reservations/fetchHallTypes', { 
+        const response = await axiosInstance.post('/reservations/fetchHallTypes', { 
            
         });  
         //console.log(JSON.stringify(response, null, 2)); 
