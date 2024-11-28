@@ -24,5 +24,14 @@ axiosInstance.interceptors.response.use(function (response){ //response라는 �
     return Promise.reject(error);
 })
 
+//토큰 없는 요청
+axiosInstance.interceptors.request.use(function (config) {
+    const token = localStorage.getItem('accessToken');
+    config.headers.Authorization = 'Bearer ' + token;
+    return config;
+}, function (error) {
+    return Promise.reject(error);
+});
+
 
 export default axiosInstance;
