@@ -11,11 +11,10 @@ export default defineConfig({
     // }
 
     proxy: {
-      '': { // 프론트엔드에서 /api 요청을 백엔드로 프록시
+     '/': {  // 모든 요청을 백엔드 서버로 프록시
         target: 'http://localhost:5000', // 백엔드 서버 주소
-        //target: 'http://127.0.0.1:5000', 
         changeOrigin: true,  // 호스트 헤더 변경
-        rewrite: (path) => path,  // 경로 수정 없이 그대로 전달
+        secure: false, // https 연결에서 인증서를 무시하도록 설정
       },
     }
   }
