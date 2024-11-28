@@ -5,7 +5,8 @@ const axiosInstance = axios.create({
     baseURL: 'http://140.245.65.135:5000',
 
 })
-console.log("axiosInstance", axiosInstance);
+
+
 //로그인 인증 토큰 보내주기
 axiosInstance.interceptors.request.use(function (config){ //requset라는 것은 백엔드로 보낼 때
     config.headers.Authorization = 'Bearer ' + localStorage.getItem('accessToken');
