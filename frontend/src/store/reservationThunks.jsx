@@ -6,7 +6,7 @@ import axiosInstance from '../utils/axios';
 
 // 예약 생성
 export const createReservation = createAsyncThunk(
-    'reservation/createReservation',
+    'api/reservation/createReservation',
     async (body, thunkAPI) => {
         try {
             const response = await axiosInstance.post('/reservations/create', body);
@@ -20,7 +20,7 @@ export const createReservation = createAsyncThunk(
 
 // 예약 목록 조회
 export const fetchReservations = createAsyncThunk(
-    'reservation/fetchReservations',
+    'api/reservation/fetchReservations',
     async ({ startDate, endDate, statusFilter }, thunkAPI) => {
         //console.log(`startDate`, startDate)
         try {
@@ -38,7 +38,7 @@ export const fetchReservations = createAsyncThunk(
 
 // 예약 수정
 export const updateReservation = createAsyncThunk(
-    'reservation/updateReservation',
+    'api/reservation/updateReservation',
     async ({ id, body }, thunkAPI) => {
         try {
             const response = await axiosInstance.put(`/reservations/${id}`, body);
@@ -52,7 +52,7 @@ export const updateReservation = createAsyncThunk(
 
 // 예약 삭제
 export const deleteReservation = createAsyncThunk(
-    'reservation/deleteReservation',
+    'api/reservation/deleteReservation',
     async (id, thunkAPI) => {
         try {
             const response = await axiosInstance.delete(`/reservations/${id}`);
@@ -66,7 +66,7 @@ export const deleteReservation = createAsyncThunk(
 
 // 이름, 연락처, 상태로 예약 리스트를 가져오는 액션
 export const fetchReservationList = createAsyncThunk(
-    'reservation/fetchReservationList',
+    'api/reservation/fetchReservationList',
     async ({ searchName, searchContact, status }, thunkAPI) => {
         try {
             const response = await axiosInstance.post('/reservations/search', { 
@@ -87,7 +87,7 @@ export const fetchReservationList = createAsyncThunk(
 
 // 룸 종류 조회
 export const fetchRoomTypes = createAsyncThunk(
-    'reservation/fetchRoomTypes',
+    'api/reservation/fetchRoomTypes',
     async (_, thunkAPI) => {
       try {
         // GET 요청을 보냄
@@ -106,7 +106,7 @@ export const fetchRoomTypes = createAsyncThunk(
 
   // 홀 종류 조회
 export const fetchHallTypes = createAsyncThunk(
-    'reservation/fetchHallTypes',
+    'api/reservation/fetchHallTypes',
     async (_, thunkAPI) => {
       try {
         // GET 요청을 보냄
