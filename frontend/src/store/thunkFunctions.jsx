@@ -84,7 +84,7 @@ export const loginUser = createAsyncThunk(
         
         try {
             const response = await axiosInstance.post(
-                `/api/users/login`,
+                `/users/login`,
                 body //email, password가 있음
             )
             return response.data; //action.payload
