@@ -46,7 +46,7 @@
     "test": "vite test",  
     "preview": "vite preview"  
   },
- 
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",

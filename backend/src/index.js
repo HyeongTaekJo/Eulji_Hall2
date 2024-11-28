@@ -27,10 +27,10 @@ app.use(cors(corsOptions
 ));
 
 // 요청 처리 미들웨어
-app.use((req, res, next) => {
-    console.log('Request URL:', req.originalUrl); // 요청 URL 출력
-    next(); // 다음 미들웨어로 이동
-  });
+// app.use((req, res, next) => {
+//     console.log('Request URL:', req.originalUrl); // 요청 URL 출력
+//     next(); // 다음 미들웨어로 이동
+//   });
 
 app.use(express.json());
 
