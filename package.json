@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "exit:all": "pkill -f 'node'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run backend --prefix backend\" \"npm run start --prefix frontend\""
   },
