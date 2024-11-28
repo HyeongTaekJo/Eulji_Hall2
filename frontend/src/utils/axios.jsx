@@ -26,8 +26,10 @@ axiosInstance.interceptors.response.use(function (response){ //response라는 �
 
 //토큰 없는 요청
 axiosInstance.interceptors.request.use(function (config) {
-    const token = localStorage.getItem('accessToken');
-    config.headers.Authorization = 'Bearer ' + token;
+    if  (!config.url.includes('/login') && !config.url.includes('/register')) { // 공개 엔드포인트 제외
+        const token = localStorage.getItem('accessToken');
+        config.headers.Authorization = 'Bearer ' + token;
+    }
     return config;
 }, function (error) {
     return Promise.reject(error);
