@@ -8,6 +8,7 @@ const HallType = require('../models/HallType');
 // 예약 생성
 router.post('/create', async (req, res, next) => {
   try {
+    console.log("req.body-> " + req.body);
     const reservation = new Reservation(req.body);
     await reservation.save();
     return res.json(reservation);
