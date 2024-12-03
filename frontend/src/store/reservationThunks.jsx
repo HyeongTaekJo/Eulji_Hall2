@@ -47,48 +47,48 @@ export const createReservation = createAsyncThunk(
             console.log('body: ' + JSON.stringify(body, null, 2));
             const response = await axiosInstance.post('/reservations/create', body);
 
-            if (response.data) {
-                console.log('Reservation created successfully:', response.data);
+            // if (response.data) {
+            //     console.log('Reservation created successfully:', response.data);
 
-                try {
-                    // 템플릿 매핑 변수
-                    const 고객명 = body.name;
-                    const 소속 = body.affiliation;
-                    const 계급 = body.rank;
-                    const 연락처 = body.contact;
-                    const 메뉴 = body.contact;
-                    // const 메뉴 = body.menu.join(', ');
-                    const 예약일자 = body.date;
-                    const 예약시간 = body.time;
-                    const 인원수 = body.peopleCount;
-                    const 룸홀 = body.tableType;
+            //     try {
+            //         // 템플릿 매핑 변수
+            //         const 고객명 = body.name;
+            //         const 소속 = body.affiliation;
+            //         const 계급 = body.rank;
+            //         const 연락처 = body.contact;
+            //         const 메뉴 = body.contact;
+            //         // const 메뉴 = body.menu.join(', ');
+            //         const 예약일자 = body.date;
+            //         const 예약시간 = body.time;
+            //         const 인원수 = body.peopleCount;
+            //         const 룸홀 = body.tableType;
 
-                    const response2 = await axios.post(
-                        'https://kakaoapi.aligo.in/akv10/alimtalk/send/',
-                        {
-                            params: {
-                                apikey: 'we7znqi4ke1zh05wuc5kozrmoag2tthr',
-                                userid: 'diajd1',
-                                senderkey: '3db47708194aa95d46ec07dbf911ad4cd53fe115',
-                                tpl_code: 'TW_2596',
-                                sender: '01089035627',
-                                receiver_1: 연락처,
-                                recvname_1: 고객명,
-                                subject_1: '을지회관 예약 안내',
-                                message_1: `을지회관 예약시스템\n\n예약 완료 안내\n\n안녕하세요, ${고객명}님.\n${고객명}님의 예약이 완료되었습니다.\n\n소속: ${소속}\n계급: ${계급}\n연락처: ${연락처}\n메뉴: ${메뉴}\n예약일자: ${예약일자}\n예약시간: ${예약시간}\n인원수: ${인원수}명\n타입: ${룸홀}\n\n궁금하신 사항은 언제든지 문의해 주세요.\n감사합니다.\n--------------------------------------\n상호명: 을지회관\n위치: 강원 인제군 북면 원통로 113-3`,
-                                // message_1: `을지회관 예약시스템\n\n예약 완료 안내\n\n안녕하세요, ${body.name}님.\n${body.name}님의 예약이 완료되었습니다.\n\n소속: ${body.affiliation}\n계급: ${body.rank}\n연락처: ${body.contact}\n메뉴: ${body.menu.join(', ')}\n예약일자: ${body.date}\n예약시간: ${body.time}\n인원수: ${body.peopleCount}명\n타입: ${body.tableType}\n\n궁금하신 사항은 언제든지 문의해 주세요.\n감사합니다.\n--------------------------------------\n상호명: 을지회관\n위치: 강원 인제군 북면 원통로 113-3`,
-                                // failover: 'Y',
-                                // fsubject_1: '을지회관 예약 안내',
-                                // fmessage_1: `${고객명}님, 예약이 정상적으로 완료되었습니다. 자세한 내용은 알림톡을 확인해 주세요.`,
-                                // testMode: 'N',
-                            },
-                        }
-                    );
-                    console.log('AlimTalk sent successfully:', response2.data);
-                } catch (error) {
-                    console.error('Error sending AlimTalk:', error.response?.data || error.message);
-                }
-            }
+            //         const response2 = await axios.post(
+            //             'https://kakaoapi.aligo.in/akv10/alimtalk/send/',
+            //             {
+            //                 params: {
+            //                     apikey: 'we7znqi4ke1zh05wuc5kozrmoag2tthr',
+            //                     userid: 'diajd1',
+            //                     senderkey: '3db47708194aa95d46ec07dbf911ad4cd53fe115',
+            //                     tpl_code: 'TW_2596',
+            //                     sender: '01089035627',
+            //                     receiver_1: 연락처,
+            //                     recvname_1: 고객명,
+            //                     subject_1: '을지회관 예약 안내',
+            //                     message_1: `을지회관 예약시스템\n\n예약 완료 안내\n\n안녕하세요, ${고객명}님.\n${고객명}님의 예약이 완료되었습니다.\n\n소속: ${소속}\n계급: ${계급}\n연락처: ${연락처}\n메뉴: ${메뉴}\n예약일자: ${예약일자}\n예약시간: ${예약시간}\n인원수: ${인원수}명\n타입: ${룸홀}\n\n궁금하신 사항은 언제든지 문의해 주세요.\n감사합니다.\n--------------------------------------\n상호명: 을지회관\n위치: 강원 인제군 북면 원통로 113-3`,
+            //                     // message_1: `을지회관 예약시스템\n\n예약 완료 안내\n\n안녕하세요, ${body.name}님.\n${body.name}님의 예약이 완료되었습니다.\n\n소속: ${body.affiliation}\n계급: ${body.rank}\n연락처: ${body.contact}\n메뉴: ${body.menu.join(', ')}\n예약일자: ${body.date}\n예약시간: ${body.time}\n인원수: ${body.peopleCount}명\n타입: ${body.tableType}\n\n궁금하신 사항은 언제든지 문의해 주세요.\n감사합니다.\n--------------------------------------\n상호명: 을지회관\n위치: 강원 인제군 북면 원통로 113-3`,
+            //                     // failover: 'Y',
+            //                     // fsubject_1: '을지회관 예약 안내',
+            //                     // fmessage_1: `${고객명}님, 예약이 정상적으로 완료되었습니다. 자세한 내용은 알림톡을 확인해 주세요.`,
+            //                     // testMode: 'N',
+            //                 },
+            //             }
+            //         );
+            //         console.log('AlimTalk sent successfully:', response2.data);
+            //     } catch (error) {
+            //         console.error('Error sending AlimTalk:', error.response?.data || error.message);
+            //     }
+            // }
 
             return response.data; // action.payload
         } catch (err) {
