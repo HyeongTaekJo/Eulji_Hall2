@@ -4,15 +4,18 @@ const Reservation = require('../models/Reservation');
 const RoomType = require('../models/RoomType');
 const HallType = require('../models/HallType');
 const axios = require('axios');
+const qs = require('qs');
 
 
-// 예약 생성
+
+// 예약 생성 및 알림톡 전송
 router.post('/create', async (req, res, next) => {
   try {
-    console.log("req.body-> " + JSON.stringify(req.body,null, 2));
+    console.log("req.body-> " + JSON.stringify(req.body, null, 2));
+
+    // 예약 저장
     const reservation = new Reservation(req.body);
     await reservation.save();
-
     console.log('Reservation created successfully:', reservation);
 
     // 알림톡 전송
@@ -30,25 +33,33 @@ router.post('/create', async (req, res, next) => {
       const 인원수 = peopleCount;
       const 룸홀 = tableType;
 
-      const response = await axios.post(
-        'https://kakaoapi.aligo.in/akv10/alimtalk/send/',
-        null,
-        {
-          params: {
-            apikey: 'we7znqi4ke1zh05wuc5kozrmoag2tthr',
-            userid: 'diajd1',
-            senderkey: '3db47708194aa95d46ec07dbf911ad4cd53fe115',
-            tpl_code: 'TW_2596',
-            sender: '01089035627',
-            receiver_1: 연락처,
-            recvname_1: 고객명,
-            subject_1: '을지회관 예약 안내',
-            message_1: `을지회관 예약시스템\n\n예약 완료 안내\n\n안녕하세요, ${고객명}님.\n${고객명}님의 예약이 완료되었습니다.\n\n소속: ${소속}\n계급: ${계급}\n연락처: ${연락처}\n메뉴: ${메뉴}\n예약일자: ${예약일자}\n예약시간: ${예약시간}\n인원수: ${인원수}명\n타입: ${룸홀}\n\n궁금하신 사항은 언제든지 문의해 주세요.\n감사합니다.\n--------------------------------------\n상호명: 을지회관\n위치: 강원 인제군 북면 원통로 113-3`,
-            testMode: 'N',
-          },
-        }
-      );
+      // 요청 데이터 URL-encoded 형식으로 변환
+      const data = qs.stringify({
+        apikey: 'we7znqi4ke1zh05wuc5kozrmoag2tthr',
+        userid: 'diajd1',
+        senderkey: '3db47708194aa95d46ec07dbf911ad4cd53fe115',
+        tpl_code: 'TW_2596',
+        sender: '01089035627',
+        receiver_1: 연락처,
+        recvname_1: 고객명,
+        subject_1: '을지회관 예약 안내',
+        message_1: `을지회관 예약시스템\n\n예약 완료 안내\n\n안녕하세요, ${고객명}님.\n${고객명}님의 예약이 완료되었습니다.\n\n소속: ${소속}\n계급: ${계급}\n연락처: ${연락처}\n메뉴: ${메뉴}\n예약일자: ${예약일자}\n예약시간: ${예약시간}\n인원수: ${인원수}명\n타입: ${룸홀}\n\n궁금하신 사항은 언제든지 문의해 주세요.\n감사합니다.\n--------------------------------------\n상호명: 을지회관\n위치: 강원 인제군 북면 원통로 113-3`,
+        testMode: 'N',
+      });
 
+      // 요청 설정
+      const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://kakaoapi.aligo.in/akv10/alimtalk/send/',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: data,
+      };
+
+      // API 요청
+      const response = await axios.request(config);
       console.log('AlimTalk sent successfully:', response.data);
     } catch (alimTalkError) {
       console.error('Error sending AlimTalk:', alimTalkError.response?.data || alimTalkError.message);
@@ -56,7 +67,7 @@ router.post('/create', async (req, res, next) => {
 
     return res.json(reservation);
   } catch (error) {
-    next(error);
+    next(error); // 오류 처리 미들웨어로 전달
   }
 });
 
