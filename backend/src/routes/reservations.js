@@ -37,7 +37,7 @@ router.post('/create', async (req, res, next) => {
         apikey: 'we7znqi4ke1zh05wuc5kozrmoag2tthr',
         userid: 'diajd1',
         senderkey: '3db47708194aa95d46ec07dbf911ad4cd53fe115',
-        tpl_code: 'TW_2596',
+        tpl_code: 'TW_2864',
         sender: '01089035627',
         receiver_1: 연락처,
         recvname_1: 고객명,
