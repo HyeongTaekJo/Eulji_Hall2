@@ -37,8 +37,6 @@ import axios from 'axios';
 // });
 
 
-
-
 // 예약 생성
 export const createReservation = createAsyncThunk(
     'reservation/createReservation',
