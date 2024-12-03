@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0', // 모든 네트워크 인터페이스에서 접근 가능
-    //port: 80,      // 원하는 포트로 변경
+    port: 80,      // 원하는 포트로 변경
 
     //프록시는 처리하지 않는 것이 좋다.
     //어차피 cors로 잡아주기 때문에 또 할필요 없고 오류가 계속 발생한다.
