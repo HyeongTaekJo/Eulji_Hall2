@@ -3,6 +3,7 @@ const router = express.Router();
 const Reservation = require('../models/Reservation');
 const RoomType = require('../models/RoomType');
 const HallType = require('../models/HallType');
+const axios = require('axios');
 
 
 // 예약 생성
