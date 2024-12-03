@@ -13,11 +13,11 @@ const app = express();
 // CORS 처리
 const corsOptions = {
     //프록시 처리하지 말 것 오류남
-    origin: '*', //프론트엔드 3000요청 허용,
-    // origin: [
-    //          'http://140.245.65.135',
-    //         ], // 허용할 출처
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    // origin: '*', //프론트엔드 3000요청 허용,
+    origin: [
+             'http://140.245.65.135',
+            ], // 허용할 출처
+    methods: ["GET", "POST", "PUT", "DELETE","OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"], // 허용할 헤더
 };
 
