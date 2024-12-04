@@ -8,7 +8,7 @@ const qs = require('qs');
 
 const apikey = 'we7znqi4ke1zh05wuc5kozrmoag2tthr';                  // 알리고 api key
 const userid = 'diajd1';                                            //알리고 id
-const kakaoChannelKey = '3db47708194aa95d46ec07dbf911ad4cd53fe115'; //카카오채널
+const kakaoChannelKey = '4235c195db1bf5204a13554242057109aa2bb9bc'; //카카오채널
 const templateCode = 'TW_3026';                                     //템플릿(예약자용)
 const templateCodeAdmin = 'TW_3035';                                //템플릿(관리자용)
 const adminName = "허승훈";                                          //관리자
