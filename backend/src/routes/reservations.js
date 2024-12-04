@@ -9,8 +9,8 @@ const qs = require('qs');
 const apikey = 'we7znqi4ke1zh05wuc5kozrmoag2tthr';                  // 알리고 api key
 const userid = 'diajd1';                                            //알리고 id
 const kakaoChannelKey = '3db47708194aa95d46ec07dbf911ad4cd53fe115'; //카카오채널
-const templateCode = 'TW_2596';                                     //템플릿(예약자용)
-const templateCodeAdmin = 'TW_2596';                                //템플릿(관리자용)
+const templateCode = 'TW_3026';                                     //템플릿(예약자용)
+const templateCodeAdmin = 'TW_3035';                                //템플릿(관리자용)
 const adminName = "허승훈";                                          //관리자
 const adminContact = "010-8903-5627";                               //010-3164-8158
 
@@ -35,7 +35,7 @@ const sendAlimTalk2 = async (reservationData) => {
     apikey: apikey,
     userid: userid,
     senderkey: kakaoChannelKey,
-    tpl_code: templateCode,
+    tpl_code: templateCodeAdmin,
     sender: adminContact,
     receiver_1: adminContact,
     recvname_1: adminName,
@@ -121,8 +121,8 @@ router.post('/create', async (req, res, next) => {
 
     // 알림톡 전송
     try {
-      const alimTalkResponse = await sendAlimTalk(req.body);
-      const alimTalkResponse2 = await sendAlimTalk2(req.body);
+      const alimTalkResponse = await sendAlimTalk(req.body); //예약한사람
+      const alimTalkResponse2 = await sendAlimTalk2(req.body); //관리자
       console.log('AlimTalk sent successfully:', alimTalkResponse);
       console.log('AlimTalk sent2 successfully:', alimTalkResponse2);
     } catch (alimTalkError) {
