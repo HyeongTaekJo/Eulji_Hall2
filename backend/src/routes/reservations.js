@@ -12,7 +12,7 @@ const kakaoChannelKey = '4235c195db1bf5204a13554242057109aa2bb9bc'; //카카오�
 const templateCode = 'TW_3026';                                     //템플릿(예약자용)
 const templateCodeAdmin = 'TW_3035';                                //템플릿(관리자용)
 const adminName = "허승훈";                                          //관리자
-const adminContact = "010-8903-5627";                               //010-3164-8158
+const adminContact = "010-3164-8158";                               //010-3164-8158
 
 // 알림톡(관리자)
 const sendAlimTalk2 = async (reservationData) => {
