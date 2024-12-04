@@ -8,7 +8,7 @@ const qs = require('qs');
 
 const apikey = 'we7znqi4ke1zh05wuc5kozrmoag2tthr';
 const userid = 'diajd1';
-const kakaoChannelKey = '3db47708194aa95d46ec07dbf911ad4cd53fe115';
+const kakaoChannelKey = '4235c195db1bf5204a13554242057109aa2bb9bc';
 const templateCode = 'TW_2596';
 
 // 알림톡
