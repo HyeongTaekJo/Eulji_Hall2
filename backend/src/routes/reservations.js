@@ -6,12 +6,63 @@ const HallType = require('../models/HallType');
 const axios = require('axios');
 const qs = require('qs');
 
-const apikey = 'we7znqi4ke1zh05wuc5kozrmoag2tthr';
-const userid = 'diajd1';
-const kakaoChannelKey = '4235c195db1bf5204a13554242057109aa2bb9bc';
-const templateCode = 'TW_2596';
+const apikey = 'we7znqi4ke1zh05wuc5kozrmoag2tthr';                  // 알리고 api key
+const userid = 'diajd1';                                            //알리고 id
+const kakaoChannelKey = '3db47708194aa95d46ec07dbf911ad4cd53fe115'; //카카오채널
+const templateCode = 'TW_2596';                                     //템플릿(예약자용)
+const templateCodeAdmin = 'TW_2596';                                //템플릿(관리자용)
+const adminName = "허승훈";                                          //관리자
+const adminContact = "010-8903-5627";                               //010-3164-8158
 
-// 알림톡
+// 알림톡(관리자)
+const sendAlimTalk2 = async (reservationData) => {
+  const { name, affiliation, rank, contact, menu, date, time, peopleCount, tableType, roomType } = reservationData;
+
+  // 템플릿 매핑 변수
+  const 고객명 = name;
+  const 소속 = affiliation;
+  const 계급 = rank;
+  const 연락처 = contact;
+  const 메뉴 = menu.join(', ');
+  const 예약일자 = date;
+  const 예약시간 = time;
+  const 인원수 = peopleCount;
+  const 룸홀 = tableType;
+  const 룸타입 = roomType || 'X'; // roomType이 없을 경우 기본값 'X' 설정
+
+  // 요청 데이터 URL-encoded 형식으로 변환
+  const data = qs.stringify({
+    apikey: apikey,
+    userid: userid,
+    senderkey: kakaoChannelKey,
+    tpl_code: templateCode,
+    sender: adminContact,
+    receiver_1: adminContact,
+    recvname_1: adminName,
+    subject_1: '을지회관 예약 안내',
+    emtitle_1: '예약 완료 안내',
+    message_1: `새 예약이 등록되었습니다.\n\n[예약 정보]\n예약자: ${고객명}\n소속: ${소속}\n계급: ${계급}\n연락처: ${연락처}\n메뉴: ${메뉴}\n예약일자: ${예약일자}\n예약시간: ${예약시간}\n인원수: ${인원수}명\n타입: ${룸홀}\n룸 타입: ${룸타입}\n\n확인을 위해 시스템에 접속하세요.\n감사합니다.`,
+    testMode: 'N',
+  });
+
+  // 요청 설정
+  const config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://kakaoapi.aligo.in/akv10/alimtalk/send/',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    data: data,
+  };
+
+  // API 요청
+  const response = await axios.request(config);
+  return response.data;
+};
+
+
+// 알림톡(예약한 사람)
 const sendAlimTalk = async (reservationData) => {
   const { name, affiliation, rank, contact, menu, date, time, peopleCount, tableType } = reservationData;
 
@@ -71,7 +122,9 @@ router.post('/create', async (req, res, next) => {
     // 알림톡 전송
     try {
       const alimTalkResponse = await sendAlimTalk(req.body);
+      const alimTalkResponse2 = await sendAlimTalk2(req.body);
       console.log('AlimTalk sent successfully:', alimTalkResponse);
+      console.log('AlimTalk sent2 successfully:', alimTalkResponse2);
     } catch (alimTalkError) {
       console.error('Error sending AlimTalk:', alimTalkError.response?.data || alimTalkError.message);
     }
