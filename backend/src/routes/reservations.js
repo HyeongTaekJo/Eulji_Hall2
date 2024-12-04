@@ -117,14 +117,14 @@ router.post('/create', async (req, res, next) => {
     // 예약 저장
     const reservation = new Reservation(req.body);
     await reservation.save();
-    console.log('Reservation created successfully:', reservation);
+    //console.log('Reservation created successfully:', reservation);
 
     // 알림톡 전송
     try {
       const alimTalkResponse = await sendAlimTalk(req.body); //예약한사람
       const alimTalkResponse2 = await sendAlimTalk2(req.body); //관리자
-      console.log('AlimTalk sent successfully:', alimTalkResponse);
-      console.log('AlimTalk sent2 successfully:', alimTalkResponse2);
+      //console.log('AlimTalk sent successfully:', alimTalkResponse);
+      //console.log('AlimTalk sent2 successfully:', alimTalkResponse2);
     } catch (alimTalkError) {
       console.error('Error sending AlimTalk:', alimTalkError.response?.data || alimTalkError.message);
     }
