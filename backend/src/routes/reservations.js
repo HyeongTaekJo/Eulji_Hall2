@@ -112,7 +112,7 @@ const sendAlimTalk = async (reservationData) => {
 // 예약 생성 및 알림톡 전송
 router.post('/create', async (req, res, next) => {
   try {
-    console.log("req.body-> " + JSON.stringify(req.body, null, 2));
+    //console.log("req.body-> " + JSON.stringify(req.body, null, 2));
 
     // 예약 저장
     const reservation = new Reservation(req.body);
