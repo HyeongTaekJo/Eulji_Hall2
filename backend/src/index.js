@@ -25,8 +25,9 @@ app.use(cors(
     corsOptions
 ));
 
-app.use('/', (req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
+app.use((req, res, next) => {
+    const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+    console.log(`[${req.method}] ${fullUrl}`);
     next();
 });
 
