@@ -8,7 +8,7 @@ export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (body, thunkAPI) => {
     try {
-      const response = await axiosInstance.post(`/api/users/register`, body);
+      const response = await axiosInstance.post(`/users/register`, body);
       return response.data;
     } catch (err) {
       console.log(err);
@@ -22,7 +22,7 @@ export const findPassword = createAsyncThunk(
   "user/findPasswordUser",
   async ({ searchId, searchName }, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/api/users/findPassword", {
+      const response = await axiosInstance.post("/users/findPassword", {
         searchId,
         searchName,
       });
@@ -42,7 +42,7 @@ export const changePassword = createAsyncThunk(
   "user/changePasswordUser",
   async ({ password, id }, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/api/users/changePassword", {
+      const response = await axiosInstance.post("/users/changePassword", {
         password,
         id,
       });
@@ -63,7 +63,7 @@ export const authUser = createAsyncThunk(
   "user/authUser",
   async (body, thunkAPI) => {
     try {
-      const response = await axiosInstance.get(`/api/users/auth`);
+      const response = await axiosInstance.get(`/users/auth`);
       return response.data; //action.payload
     } catch (err) {
       console.log(err);
@@ -94,7 +94,7 @@ export const logoutUser = createAsyncThunk(
   "user/logoutUser",
   async (body, thunkAPI) => {
     try {
-      const response = await axiosInstance.post(`/api/users/logout`);
+      const response = await axiosInstance.post(`/users/logout`);
       return response.data; //action.payload
     } catch (err) {
       console.log(err);
