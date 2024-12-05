@@ -26,6 +26,11 @@ app.use(cors(
     corsOptions
 ));
 
+app.use((req, res, next) => {
+    console.log(" url :" + req.method, req.url);
+    next();
+});
+
 
 app.use(express.json());
 
